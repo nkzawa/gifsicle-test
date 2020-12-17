@@ -4,9 +4,6 @@ const gifsicle = require('gifsicle');
 const { join } = require('path');
 
 module.exports = (req, res) => {
-  // fake to resolve the file
-  fs.createReadStream(join(__dirname, '../public/input.gif'));
-
   const child = spawn(gifsicle, ['--colors', '256', join(__dirname, '../public/input.gif')]);
   child.stdout.on('data', (data) => {
     res.write(data);
